@@ -22,8 +22,9 @@
         img {
             margin-left: 8px;
             transition: transform .15s;
+            transform: rotate(-180deg);
             &.reversed {
-                transform: rotate(-180deg);
+                transform: rotate(0);
             }
         }
     }
