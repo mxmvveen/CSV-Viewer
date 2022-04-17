@@ -1,24 +1,20 @@
 @import "../styles/colors.scss";
 
-.container {
-    width: 1200px;
-    margin: auto;
-    height: calc(100vh - 76px);
+.upload-file {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    padding-bottom: 150px;
 
-    .upload-file {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: auto;
-        padding-bottom: 150px;
-
-        span {
-            color: $textGrey;
-            margin: 20px 0;
-        }
+    #myFile {
+        display: none;
     }
 
+    span {
+        color: $textGrey;
+        margin: 20px 0;
+    }
     .button {
         border: solid 2px #55c4ff;
         border-radius: 10px;
@@ -31,11 +27,11 @@
         box-shadow: 1px 1px 5px -3px #00000091;
         transition: background-color 0.1s;
         cursor: pointer;
-
+    
         &:hover {
             background: #55c4ff1c;
         }
-
+    
         img {
             margin-right: 8px;
         }

@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { FileContext } from '../providers/FileProvider';
 import "./Header.scss";
 
-const Header = () => (
-  <div className='header'>
-    <span>CSV Viewer</span>
-  </div>
-)
+const Header: React.FC = () => {
+  const { clearFile } = useContext(FileContext);
+  return (
+    <div className='header'>
+      <span onClick={clearFile}>CSV Viewer</span>
+    </div>
+  )
+}
 
 export default Header;
