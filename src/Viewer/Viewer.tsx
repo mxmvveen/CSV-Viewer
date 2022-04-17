@@ -3,7 +3,7 @@ import "./Viewer.scss";
 
 import arrowDownIcon from "../assets/arrow-down.png";
 import { FileContext } from '../providers/FileProvider';
-import { isNumber } from '../utils/utils';
+import { isValidNumber } from '../utils/utils';
 
 const DEFAULT_SORT_VALUE: string = "sur_name";
 
@@ -25,7 +25,7 @@ const Viewer: React.FC = () => {
       return a[sortColumnIndex].localeCompare(
         b[sortColumnIndex],
         undefined,
-        { numeric: isNumber(a[sortColumnIndex]) }
+        { numeric: isValidNumber(Number(a[sortColumnIndex])) }
       );
     });
 
