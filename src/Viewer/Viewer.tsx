@@ -5,13 +5,20 @@ import arrowDownIcon from "../assets/arrow-down.png";
 import { FileContext } from '../providers/FileProvider';
 import { isNumber } from '../utils/utils';
 
+const DEFAULT_SORT_VALUE: string = "sur_name";
+
 const Viewer: React.FC = () => {
   const { content, title } = React.useContext(FileContext);
+
+  const [header, ...body] = content;
 
   const [sortColumnIndex, setSortColumnIndex] = React.useState<number>(0);
   const [isReversed, setIsReversed] = React.useState<boolean>(false);
 
-  const [header, ...body] = content;
+  React.useEffect(() => {
+    setSortColumnIndex(header?.findIndex((value: string) => value === DEFAULT_SORT_VALUE) || 0);
+    setIsReversed(false);
+  }, [header])
 
   const sortedBody: string[][] = React.useMemo(() => {
     const sortedList: string[][] = [...body].sort((a, b) => {
