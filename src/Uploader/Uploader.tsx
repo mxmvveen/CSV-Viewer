@@ -44,10 +44,10 @@ const Uploader: React.FC = () => {
         <div className="upload-file">
             <img src={csvIcon} alt="csv" />
             <span>Upload een CSV bestand om deze te bekijken</span>
-            <label htmlFor="myFile">
+            <label htmlFor="file">
                 <div className='button'><img src={uploadIcon} alt="upload" />Upload bestand</div>
             </label>
-            <input type="file" id="myFile" name="filename" accept=".csv" onChange={handleInputChange} />
+            <input type="file" id="file" accept=".csv" onChange={handleInputChange} />
         </div>
     )
 }
