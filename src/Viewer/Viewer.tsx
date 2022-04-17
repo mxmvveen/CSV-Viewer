@@ -13,11 +13,11 @@ const Viewer: React.FC = () => {
   const [header, ...body] = content;
 
   const [sortColumnIndex, setSortColumnIndex] = React.useState<number>(0);
-  const [isReversed, setIsReversed] = React.useState<boolean>(false);
+  const [isDescending, setIsDescending] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     setSortColumnIndex(header?.findIndex((value: string) => value === DEFAULT_SORT_VALUE) || 0);
-    setIsReversed(false);
+    setIsDescending(false);
   }, [header])
 
   const sortedBody: string[][] = React.useMemo(() => {
@@ -29,27 +29,27 @@ const Viewer: React.FC = () => {
       );
     });
 
-    if (isReversed) {
+    if (isDescending) {
       return sortedList.reverse();
     }
     return sortedList;
-  }, [body, sortColumnIndex, isReversed]);
+  }, [body, sortColumnIndex, isDescending]);
 
   const setSortValues = (index: number): void => {
     if (index === sortColumnIndex) {
-      setIsReversed(!isReversed)
+      setIsDescending(!isDescending)
       return;
     }
 
     setSortColumnIndex(index);
-    setIsReversed(false)
+    setIsDescending(false)
   }
 
   if (content.length === 0) {
     return null;
   }
 
-  const arrow: JSX.Element = <img src={arrowDownIcon} alt="arrow" className={isReversed ? "reversed" : ""} />;
+  const arrow: JSX.Element = <img src={arrowDownIcon} alt="arrow" className={isDescending ? "reversed" : ""} />;
   return (
     <div className="viewer">
       {title !== null &&
