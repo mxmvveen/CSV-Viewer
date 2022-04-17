@@ -3,7 +3,7 @@ import "./Viewer.scss";
 
 import arrowDownIcon from "../assets/arrow-down.png";
 import { FileContext } from '../providers/FileProvider';
-import { isValidNumber } from '../utils/utils';
+import { isValidDate, isValidNumber } from '../utils/utils';
 
 const DEFAULT_SORT_VALUE: string = "sur_name";
 
@@ -22,10 +22,16 @@ const Viewer: React.FC = () => {
 
   const sortedBody: string[][] = React.useMemo(() => {
     const sortedList: string[][] = [...body].sort((a, b) => {
+      const isNumber: boolean = isValidNumber(Number(a[sortColumnIndex]));
+
+      if (!isNumber && isValidDate(new Date(a[sortColumnIndex]))) {
+        return Number(new Date(b[sortColumnIndex])) - Number(new Date(a[sortColumnIndex]));
+      }
+      
       return a[sortColumnIndex].localeCompare(
         b[sortColumnIndex],
         undefined,
-        { numeric: isValidNumber(Number(a[sortColumnIndex])) }
+        { numeric: isNumber }
       );
     });
 
